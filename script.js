@@ -3,7 +3,7 @@ const ethers = require('ethers');
 const minPrice = ethers.parseUnits('989', 18);
 const maxPrice = ethers.parseUnits('1001', 18);
 
-const initialPrice = ethers.parseUnits('1000', 18); // Starting price in ether
+let currentPrice = ethers.parseUnits('1000', 18); // Starting price in ether
 const decreaseRate = ethers.parseUnits('0.9999665', 18); 
 const increaseRate = ethers.parseUnits('1.0000335', 18); 
 
@@ -25,15 +25,16 @@ function adjustPriceOverTime(price, secondsElapsed) {
     }
 
     let newPrice = price;
-    for (let i = 0; i < secondsElapsed; i++) {
+    // for (let i = 0; i < secondsElapsed; i++) {
+        console.log("Rate: ", rate);
         newPrice = (newPrice * rate) / ethers.parseUnits('1', 18);
-    }
+    // }
     return newPrice;
 }
 
 const intervalId = setInterval(() => {
     elapsedTime++;
-    const currentPrice = adjustPriceOverTime(initialPrice, elapsedTime);
+    currentPrice = adjustPriceOverTime(currentPrice, elapsedTime);
     console.log(`Price at ${elapsedTime} seconds: ${currentPrice}`);
 
     // You can add additional logic here if you need to stop the interval based on other conditions
