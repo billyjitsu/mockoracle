@@ -1,6 +1,6 @@
 ## Mock Oracle
 
-**This script generates a new price within a certain random range.  When the deviation surpases 1%, a notification will log out**
+**This script generates a new price within a certain random range**
 
 - Choose your min price and maximum price to alternate through
 - `decreaseRate` and `increaseRate` dictate the rate in which they may go up or down in value over time.
